@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sog'lom Hayot Apteka</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+
+        .search-bar button {
+            padding: 1rem 2rem;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .search-bar button:hover {
+            background: #45a049;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #667eea;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 0.8rem;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: #45a049;
+        }
+
+        .features {
+            background: #f8f9fa;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .cart-badge {
+            background: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .search-bar {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">💊 Sog'lom Hayot</div>
+            <ul class="nav-links">
+                <li><a href="#bosh">Bosh sahifa</a></li>
+                <li><a href="#mahsulotlar">Mahsulotlar</a></li>
+                <li><a href="#xizmatlar">Xizmatlar</a></li>
+                <li><a href="#aloqa">Aloqa</a></li>
+                <li><a href="#savatcha">🛒 Savatcha <span class="cart-badge" id="cartCount">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Sog'ligingiz - bizning g'amxo'rligimiz!</h1>
+        <p>Sifatli dori-darmonlar va professional maslahatlar</p>
+        <div class="search-bar">
+            <input type="text" placeholder="Dori yoki mahsulot qidiring..." id="searchInput">
+            <button onclick="searchProduct()">Qidirish</button>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2 class="section-title">Kategoriyalar</h2>
+        <div class="categories">
+            <div class="category-card" onclick="filterCategory('vitamin')">
+                <div class="category-icon">💊</div>
+                <h3>Vitaminlar</h3>
+                <p>Immunitet uchun</p>
+            </div>
+            <div class="category-card" onclick="filterCategory('oghriqqo')">
+                <div class="category-icon">🩹</div>
+                <h3>Og'riq qoldiruvchi</h3>
+                <p>Tez yordam</p>
+            </div>
+            <div class="category-card" onclick="filterCategory('shamollash')">
+                <div class="category-icon">🌡️</div>
+                <h3>Shamollash</h3>
+                <p>Sovuqqa qarshi</p>
+            </div>
+            <div class="category-card" onclick="filterCategory('allergiya')">
+                <div class="category-icon">🤧</div>
+                <h3>Allergiya</h3>
+                <p>Antihistamin</p>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="mahsulotlar">Mashhur Mahsulotlar</h2>
+        <div class="products" id="productGrid">
+            <div class="product-card" data-category="vitamin">
+                <div class="product-image">💊</div>
+                <div class="product-info">
+                    <h3 class="product-title">Vitamin C 1000mg</h3>
+                    <p>Immunitetni mustahkamlaydi</p>
+                    <div class="product-price">45,000 so'm</div>
+                    <button class="add-to-cart" onclick="addToCart('Vitamin C')">Savatga qo'shish</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="oghriqqo">
+                <div class="product-image">💉</div>
+                <div class="product-info">
+                    <h3 class="product-title">Paracetamol 500mg</h3>
+                    <p>Og'riq va haroratni kamaytiradi</p>
+                    <div class="product-price">12,000 so'm</div>
+                    <button class="add-to-cart" onclick="addToCart('Paracetamol')">Savatga qo'shish</button>
+                </div>
+            </div>
+            
+
+            <div class="product-card" data-category="shamollash">
+                <div class="product-image">🌡️</div>
+                <div class="product-info">
+                    <h3 class="product-title">Antigrippin</h3>
+                    <p>Shamollash simptomlari uchun</p>
+                    <div class="product-price">25,000 so'm</div>
+                    <button class="add-to-cart" onclick="addToCart('Antigrippin')">Savatga qo'shish</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="vitamin">
+                <div class="product-image">🍊</div>
+                <div class="product-info">
+                    <h3 class="product-title">Multivitamin kompleks</h3>
+                    <p>Kunlik vitamin to'plami</p>
+                    <div class="product-price">65,000 so'm</div>
+                    <button class="add-to-cart" onclick="addToCart('Multivitamin')">Savatga qo'shish</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="allergiya">
+                <div class="product-image">🤧</div>
+                <div class="product-info">
+                    <h3 class="product-title">Suprastin</h3>
+                    <p>Allergiya simptomlarini bartaraf etadi</p>
+                    <div class="product-price">18,000 so'm</div>
+                    <button class="add-to-cart" onclick="addToCart('Suprastin')">Savatga qo'shish</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="oghriqqo">
+                <div class="product-image">🩹</div>
+                <div class="product-info">
+                    <h3 class="product-title">Ibuprofen 400mg</h3>
+                    <p>Kuchli og'riq qoldiruvchi</p>
+                    <div class="product-price">22,000 so'm</div>
+                    <button class="add-to-cart" onclick="addToCart('Ibuprofen')">Savatga qo'shish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="features">
+        <h2 class="section-title" id="xizmatlar">Bizning Afzalliklarimiz</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🚚</div>
+                <h3>Tez yetkazib berish</h3>
+                <p>Buyurtmangizni 24 soat ichida yetkazamiz</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">✅</div>
+                <h3>Sifat kafolati</h3>
+                <p>Faqat sertifikatlangan dorilar</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">💬</div>
+                <h3>Bepul maslahat</h3>
+                <p>Tajribali farmatsevtlar maslahati</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">💰</div>
+                <h3>Qulay narxlar</h3>
+                <p>Doimiy aksiyalar va chegirmalar</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="aloqa">
+        <p>&copy; 2026 Sog'lom Hayot Apteka. Barcha huquqlar himoyalangan.</p>
+        <p>📞 +998 71 123-45-67 | 📧 info@soglomhayot.uz</p>
+    </footer>
+
+    <script>
+        let cartCount = 0;
+
+        function addToCart(productName) {
+            cartCount++;
+            document.getElementById('cartCount').textContent = cartCount;
+            
+            // Animation effect
+            const badge = document.getElementById('cartCount');
+            badge.style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                badge.style.transform = 'scale(1)';
+            }, 200);
+            
+            alert(productName + ' savatga qo\'shildi!');
+        }
+
+        function searchProduct() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const products = document.querySelectorAll('.product-card');
+            
+            products.forEach(product => {
+                const title = product.querySelector('.product-title').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        function filterCategory(category) {
+            const products = document.querySelectorAll('.product-card');
+            
+            products.forEach(product => {
+                if (product.dataset.category === category) {
+                    product.style.display = 'block';
+                    product.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        import { neon } from '@netlify/neon';
+         const sql = neon(); // automatically uses env NETLIFY_DATABASE_URL
+        const [post] = await sql`SELECT * FROM posts WHERE id = ${still-thunder-93978988}`;
+    </script>
+</body>
+</html>
